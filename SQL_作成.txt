@@ -1,0 +1,43 @@
+CREATE DATABASE axizdb_game;
+
+\c axizdb_game
+
+CREATE TABLE userTbl(
+	user_id   SERIAL       PRIMARY KEY,
+	user_name VARCHAR(50),
+	password  VARCHAR(128)
+);
+
+ALTER SEQUENCE userTbl_user_id_seq RESTART 101;
+
+INSERT INTO userTbl (user_name, password) VALUES ('ç≤ì°', 'axiz');
+
+CREATE TABLE user_gameTbl (
+	play_cnt SERIAL   PRIMARY KEY,
+	user_id  INTEGER,
+	game_id  INTEGER,
+	score    TIME(0),
+	date     DATE
+);
+
+ALTER SEQUENCE user_gameTbl_play_cnt_seq RESTART 1;
+
+INSERT INTO user_gameTbl (user_id, game_id, score, date) VALUES (101, 1, '00:03:00', '2018/6/18');
+
+CREATE TABLE gameTbl (
+	game_id   SERIAL      PRIMARY KEY,
+	game_name VARCHAR(50)
+);
+
+ALTER SEQUENCE gameTbl_game_id_seq RESTART 1;
+
+INSERT INTO gameTbl (game_name) VALUES ('irairabou');
+
+
+SELECT * FROM userTbl ORDER BY user_id;
+SELECT * FROM gameTbl ORDER BY game_id;
+SELECT * FROM user_gameTbl ORDER BY play_cnt;
+
+DROP TABLE userTbl;
+
+UPDATE userTbl SET user_name = 'óÈñÿ', password = 'bxiz' WHERE user_id = 102;
