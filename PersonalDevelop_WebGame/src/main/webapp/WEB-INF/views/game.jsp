@@ -10,6 +10,6 @@
 <title>ゲーム画面</title>
 </head>
 <body>
-<a href="gameResult">debug</a>
+	<a href="gameResult">debug</a>
 </body>
 </html>

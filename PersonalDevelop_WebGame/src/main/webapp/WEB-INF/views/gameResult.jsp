@@ -10,13 +10,26 @@
 <title>ゲーム結果画面</title>
 </head>
 <body>
-	<div>
-		<p>Time:${fn:escapeXml(user.rank)}</p>
-		<p>name:${fn:escapeXml(user.rank)}</p>
-	</div>
+
+	<form:form action="game" modelAttribute="GameResultForm" method="post">
+		<fieldset class="label-110">
+			<div>
+				<label class="required">Time:</label>
+				<form:input path="timeVal" value="${fn:escapeXml(resultTime)}"
+					readonly="true" />
+			</div>
+			<div>
+				<label class="required">name:</label>
+				<form:input path="nameVal" value="${fn:escapeXml(user.userName)}"
+					readonly="true" />
+			</div>
+		</fieldset>
+	</form:form>
+
 	<form action="menu">
-		<input type="submit" name="button" value="リトライ" onclick="location.href='game'; return false;">
-		<input type="submit" name="button" value="タイトルに戻る">
+		<input type="submit" name="button" value="リトライ"
+			onclick="location.href='game'; return false;"> <input
+			type="submit" name="button" value="タイトルに戻る">
 	</form>
 </body>
 </html>
