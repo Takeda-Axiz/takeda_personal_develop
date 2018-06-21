@@ -11,7 +11,7 @@
 <link href="css/commons.css" rel="stylesheet">
 </head>
 <body>
-	<p>１箇所以上の項目を変更してください</p>
+	<p>名前を変更してください</p>
 
 	<c:if test="${not empty errmsg}">
 		<p class="error">${fn:escapeXml(errmsg)}</p>
@@ -23,14 +23,6 @@
 			<div>
 				<label>名前</label>
 				<form:input path="nameVal" value="${fn:escapeXml(user.userName)}" />
-			</div>
-			<div>
-				<label>PASS</label>
-				<form:password path="passVal" value="${fn:escapeXml(user.password)}" />
-			</div>
-			<div>
-				<label>PASS（再入力）</label>
-				<form:password path="rePassVal" value="" />
 			</div>
 		</fieldset>
 		<div>

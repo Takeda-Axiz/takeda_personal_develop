@@ -247,9 +247,6 @@ public class PgLoginDao implements LoginDao {
 				+ " WHERE"
 				+ " user_id = :user_id";
 
-//		System.out.println(user.getUserId());
-//		System.out.println(user.getUserName());
-//		System.out.println(user.getPassword());
 		SQLParam.addValue("user_id", Integer.parseInt(user.getUserId()));
 		SQLParam.addValue("user_name", user.getUserName());
 		SQLParam.addValue("password", user.getPassword());
