@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import jp.co.axiz.web.dao.PlayGameDao;
+import jp.co.axiz.web.entity.Login;
 import jp.co.axiz.web.service.gameresult.GameService;
 
 @Service
@@ -14,6 +16,9 @@ public class GameServiceImpl implements GameService {
 
 	@Autowired
 	HttpSession session;
+
+	@Autowired
+	PlayGameDao pgDao;
 
 	@Override
 	public String StartGame(Model model){
@@ -29,19 +34,26 @@ public class GameServiceImpl implements GameService {
 
 	@Override
 	public String SetGameResult(Model model) {
+		// ストップウォッチを止める
+		StopWatch stopwatch = (StopWatch)session.getAttribute("watch");
+		stopwatch.stop();
 		// 変数宣言
 		Long resultTime = null;
 		Integer hourTime = null;
 		Integer minuteTime = null;
 		Integer secondTime = null;
 		String outputStr = "";
+		String loginUser = null;
 		String retStr = "gameResult";
+		Login login = (Login)session.getAttribute("user");
 
-		StopWatch stopwatch = (StopWatch)session.getAttribute("watch");
-
-		stopwatch.stop();
+		if(login != null) {
+			loginUser = login.getUserName();
+		}
 
 		resultTime = stopwatch.getTime();
+
+		System.out.println(resultTime);
 
 		secondTime = (int)(resultTime / 1000);
 
@@ -80,10 +92,14 @@ public class GameServiceImpl implements GameService {
 		if(secondTime < 10) {
 			outputStr += 0;
 			outputStr += secondTime;
-			outputStr += ".";
-			outputStr += resultTime % 1000;
 		}else {
 			outputStr += secondTime;
+		}
+
+		if(loginUser == null || loginUser.isEmpty()) {
+
+		}else {
+			pgDao.InsertScore(resultTime, "irairabou");
 		}
 
 		session.setAttribute("resultTime", outputStr);

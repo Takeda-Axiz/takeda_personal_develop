@@ -33,5 +33,8 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<div>
+		<a href="menu">タイトルに戻る</a>
+	</div>
 </body>
 </html>
