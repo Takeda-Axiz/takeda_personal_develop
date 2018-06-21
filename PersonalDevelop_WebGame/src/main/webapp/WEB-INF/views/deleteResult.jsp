@@ -9,13 +9,9 @@
 <link href="css/commons.css" rel="stylesheet">
 </head>
 <body>
-	<p>実行者：${fn:escapeXml(user.adminName)}</p>
 	<p>正常に削除されました</p>
-	<form action="select">
-		<input type="submit" value="検索">
-	</form>
 	<div>
-		<a href="menu">メニューに戻る</a>
+		<a href="menu">タイトルに戻る</a>
 	</div>
 </body>
 </html>

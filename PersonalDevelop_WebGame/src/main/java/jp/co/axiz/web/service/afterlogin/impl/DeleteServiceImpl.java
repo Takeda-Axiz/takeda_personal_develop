@@ -1,45 +1,34 @@
 package jp.co.axiz.web.service.afterlogin.impl;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import jp.co.axiz.web.dao.LoginDao;
 import jp.co.axiz.web.entity.Login;
-import jp.co.axiz.web.form.DeleteForm;
 import jp.co.axiz.web.service.afterlogin.DeleteService;
 
 @Service
 public class DeleteServiceImpl implements DeleteService {
 
 	@Autowired
+	HttpSession session;
+
+	@Autowired
 	private LoginDao logindao;
 
 	@Override
-	public String CallDao(DeleteForm form, Model model) {
+	public void DeleteDao(Model model) {
 		// 変数宣言
-		String inputId = "";
-		String retStr = "deleteConfirm";
-		Login login;
+		String delId = "";
+		Login loginUser = (Login) session.getAttribute("user");
 
-		inputId = form.getIdVal();
+		delId = loginUser.getUserId();
 
-		if (inputId == null || inputId.isEmpty()) {
-			model.addAttribute("errmsg", "必須項目を入力してください");
-			// delete.jspに遷移
-			retStr = "delete";
-		}else {
-			login = logindao.findById(Integer.parseInt(inputId));
+		logindao.delete(Integer.parseInt(delId));
 
-			if (login == null) {
-				model.addAttribute("errmsg", "入力されたデータは存在しません");
-				// delete.jspに遷移
-				retStr = "delete";
-			}else {
-				model.addAttribute("deleteUser", login);
-			}
-		}
-
-		return retStr;
+		session.removeAttribute("user");
 	}
 }

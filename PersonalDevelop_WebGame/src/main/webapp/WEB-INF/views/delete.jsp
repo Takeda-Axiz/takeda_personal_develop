@@ -12,20 +12,10 @@
 </head>
 <body>
 	<p>
-		削除を行うデータのIDを入力してください<br> <span class="required"></span>は必須です
+		今ログインしているユーザーの情報を削除します<br>よろしいですか？
 	</p>
 
-	<c:if test="${not empty errmsg}">
-		<p class="error">${fn:escapeXml(errmsg)}</p>
-	</c:if>
-
-	<form:form action="deleteConfirm" modelAttribute="DeleteForm" method="post">
-		<fieldset>
-			<div>
-				<label class="required">ID</label>
-				<form:input path="idVal" value="${fn:escapeXml(param.id)}" />
-			</div>
-		</fieldset>
+	<form:form action="deleteConfirm" method="post">
 		<input type="submit" value="確認">
 	</form:form>
 	<div>
