@@ -21,16 +21,16 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${userlist}" var="user">
-				<p>${fn:escapeXml(user.rank)}</p>
-				<tr>
-					<td>${fn:escapeXml(user.score)}</td>
-				</tr>
-				<p>by</p>
-				<tr>
-					<td>${fn:escapeXml(user.userName)}</td>
-				</tr>
-			</c:forEach>
+			<c:if test="${not empty playlist}">
+				<c:forEach items="${playlist}" var="playing">
+					<tr>
+						<td>${fn:escapeXml(playing.rank)}</td>
+						<td>${fn:escapeXml(playing.score)}</td>
+						<td>by</td>
+						<td>${fn:escapeXml(playing.userName)}</td>
+					</tr>
+				</c:forEach>
+			</c:if>
 		</tbody>
 	</table>
 	<div>
