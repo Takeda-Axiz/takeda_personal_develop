@@ -53,8 +53,6 @@ public class GameServiceImpl implements GameService {
 
 		resultTime = stopwatch.getTime();
 
-		System.out.println(resultTime);
-
 		secondTime = (int)(resultTime / 1000);
 
 		if((secondTime / 60) >= 1) {

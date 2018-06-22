@@ -10,7 +10,6 @@
 <title>ゲーム結果画面</title>
 </head>
 <body>
-
 	<form:form action="game" modelAttribute="GameResultForm" method="post">
 		<fieldset class="label-110">
 			<div>

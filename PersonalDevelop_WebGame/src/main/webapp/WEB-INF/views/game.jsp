@@ -10,6 +10,9 @@
 <title>ゲーム画面</title>
 </head>
 <body>
-	<a href="gameResult">debug</a>
+	<p>ストップウォッチ動作中…<br>止める場合はストップを押してください</p>
+	<form:form action="gameResult" method="post">
+		<input type="submit" name="button" value="ストップ">
+	</form:form>
 </body>
 </html>

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import jp.co.axiz.web.form.GameForm;
 import jp.co.axiz.web.form.GameResultForm;
 import jp.co.axiz.web.service.gameresult.GameService;
 
@@ -18,7 +19,7 @@ public class GameController {
 
 	// menu -> game
 	@RequestMapping(value="/game", method=RequestMethod.GET)
-	public String game(Model model) {
+	public String game(@ModelAttribute("GameForm") GameForm form, Model model) {
 		String retJspVal = gService.StartGame(model);
 
 		return retJspVal;
