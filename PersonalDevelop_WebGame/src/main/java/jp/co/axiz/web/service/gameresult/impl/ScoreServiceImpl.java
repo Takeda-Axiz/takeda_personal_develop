@@ -28,9 +28,7 @@ public class ScoreServiceImpl implements ScoreService {
 
 		list = lpDao.joinScoreName();
 
-//		System.out.println(list);
 		session.setAttribute("playlist", list);
-//		model.addAttribute("rank", ConstVal.RANK);
 
 		return retStr;
 	}
